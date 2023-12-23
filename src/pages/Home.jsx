@@ -9,7 +9,7 @@ const Home = () => {
       <motion.div
         initial={{ scale: 0.3 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeIn" }}
+        transition={{ duration: 1, ease: "easeIn" }}
       >
         <img
           src={main}
