@@ -21,7 +21,7 @@ const About = () => {
           className=" text-xl my-3 md:text-2xl max-w-5xl mx-auto md:my-5"
         >
           Hi, I'm Kaung Satt, a passionate web developer with a strong
-          foundation in front-end technologies.I'm 22 years old.Second Years
+          foundation in front-end technologies.I'm 23 years old.Third Years
           Myanmar Major at Dagon University.
         </motion.p>
         <motion.p
@@ -31,7 +31,7 @@ const About = () => {
           I specialize in building interactive and user-friendly web
           applications using ReactJS. I have a deep understanding of HTML, CSS,
           and JavaScript and have experience working with modern frameworks like
-          Redux and Next.js.
+          Redux.
         </motion.p>
         <motion.p
           variants={aboutText}

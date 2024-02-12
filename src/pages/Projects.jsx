@@ -7,6 +7,7 @@ import RecipeImg from "../images/recipe.png";
 import QuoteImg from "../images/quote.png";
 import EcommerceImg from "../images/ecommerce.png";
 import ShoppingImg from "../images/shopping.png";
+import TravelImg from "../images/travel.png";
 import Card from "../components/Card";
 
 export const Projects = () => {
@@ -45,6 +46,13 @@ export const Projects = () => {
       website: "https://k-react-shopping.netlify.app/",
       github: "https://github.com/KaungSatt22/react-shopping",
       name: "Shopping",
+    },
+    {
+      id: 6,
+      imgSrc: TravelImg,
+      website: "https://animated-torte-ac9ed0.netlify.app/",
+      github: "https://github.com/KaungSatt22/travel",
+      name: "Travel",
     },
   ];
   return (

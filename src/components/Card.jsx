@@ -21,13 +21,13 @@ const Card = ({ imgSrc, website, github, name }) => {
           {name} Project
         </h2>
         <div className="flex justify-center items-center mt-5 gap-[5rem] lg:mt-[5rem]">
-          <a href={github}>
+          <a href={github} target="_blank">
             <div className="border-2 border-black p-2 lg:p-3 rounded-lg lg:border-white">
               <BsGithub size={45} className="lg:text-white" />
             </div>
           </a>
 
-          <a href={website}>
+          <a href={website} target="_blank">
             <div className="border-2 border-black p-2 lg:p-3  rounded-lg lg:border-white">
               <BsGlobe size={45} className="lg:text-white" />
             </div>

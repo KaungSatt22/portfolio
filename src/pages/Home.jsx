@@ -48,21 +48,31 @@ const Home = () => {
           animate="show"
           className=" max-w-md mx-auto flex items-center justify-between mb-5 overflow-hidden"
         >
-          <motion.a href="https://twitter.com/KaungSatt22" variants={item}>
+          <motion.a
+            href="https://twitter.com/KaungSatt22"
+            target="_blank"
+            variants={item}
+          >
             <BsTwitter size={45} className=" cursor-pointer" />
           </motion.a>
 
-          <motion.a href="https://github.com/KaungSatt22" variants={item}>
+          <motion.a
+            href="https://github.com/KaungSatt22"
+            target="_blank"
+            variants={item}
+          >
             <BsGithub size={45} className=" cursor-pointer" />
           </motion.a>
           <motion.a
             href="https://discordapp.com/users/heaven4138"
+            target="_blank"
             variants={item}
           >
             <BsDiscord size={45} className=" cursor-pointer" />
           </motion.a>
           <motion.a
             href="https://www.facebook.com/kaungsatt.heaven22/"
+            target="_blank"
             variants={item}
           >
             <BsFacebook size={45} className=" cursor-pointer" />
