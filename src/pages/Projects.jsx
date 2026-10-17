@@ -1,73 +1,82 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { container } from "../components/ultis/animate";
-
-import MovieImg from "../images/Movie.png";
-import RecipeImg from "../images/recipe.png";
-import QuoteImg from "../images/quote.png";
-import EcommerceImg from "../images/ecommerce.png";
-import ShoppingImg from "../images/shopping.png";
-import TravelImg from "../images/travel.png";
-import Card from "../components/Card";
+import { BsGithub } from "react-icons/bs";
+import { projects, githubRepos } from "../data/content";
+import ProjectItem from "../components/ProjectItem";
+import { fadeUp, stagger } from "../components/ultis/animate";
 
 export const Projects = () => {
-  let imagesArr = [
-    {
-      id: 1,
-      imgSrc: MovieImg,
-      website: "https://k-react-movie.netlify.app/",
-      github: "https://github.com/KaungSatt22/react-movie",
-      name: "Movie",
-    },
-    {
-      id: 2,
-      imgSrc: RecipeImg,
-      website: "https://k-react-recipe.netlify.app/",
-      github: "https://github.com/KaungSatt22/react-recipe",
-      name: "Recipe",
-    },
-    {
-      id: 3,
-      imgSrc: QuoteImg,
-      website: "https://k-react-quote.netlify.app/",
-      github: "https://github.com/KaungSatt22/react-quote",
-      name: "Quote",
-    },
-    {
-      id: 4,
-      imgSrc: EcommerceImg,
-      website: "https://k-react-ecommerce.netlify.app/",
-      github: "https://github.com/KaungSatt22/react_ecommerce",
-      name: "Ecommerce",
-    },
-    {
-      id: 5,
-      imgSrc: ShoppingImg,
-      website: "https://k-react-shopping.netlify.app/",
-      github: "https://github.com/KaungSatt22/react-shopping",
-      name: "Shopping",
-    },
-    {
-      id: 6,
-      imgSrc: TravelImg,
-      website: "https://animated-torte-ac9ed0.netlify.app/",
-      github: "https://github.com/KaungSatt22/travel",
-      name: "Travel",
-    },
-  ];
   return (
-    <div>
-      <h2 className="text-center text-4xl font-bold mt-5">Projects</h2>
+    <div className="page-shell">
+      <motion.div variants={stagger} initial="hidden" animate="show">
+        <motion.p variants={fadeUp} className="section-label">
+          Work
+        </motion.p>
+        <motion.h1 variants={fadeUp} className="section-title mt-2">
+          Implemented projects
+        </motion.h1>
+        <motion.p
+          variants={fadeUp}
+          className="mt-4 max-w-2xl text-base text-muted md:text-lg"
+        >
+          Enterprise systems built at Thuriya Ace Technology — insurance,
+          payments, and administration platforms.
+        </motion.p>
+      </motion.div>
+
       <motion.div
-        className="container mx-auto mt-20 flex flex-col lg:flex-row lg:flex-wrap gap-[5rem] justify-center items-center lg:justify-between p-3"
-        variants={container}
+        className="mt-12 md:mt-16"
+        variants={stagger}
         initial="hidden"
         animate="show"
       >
-        {imagesArr.map((arr) => (
-          <Card key={arr.id} {...arr} />
+        {projects.map((project) => (
+          <ProjectItem key={project.id} {...project} />
         ))}
       </motion.div>
+
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="mt-16 border-t border-ink/10 pt-12"
+      >
+        <motion.p variants={fadeUp} className="section-label">
+          Open source
+        </motion.p>
+        <motion.h2
+          variants={fadeUp}
+          className="mt-2 font-display text-2xl font-bold text-ink"
+        >
+          Notable GitHub repos
+        </motion.h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {githubRepos.map((repo) => (
+            <motion.a
+              key={repo.name}
+              variants={fadeUp}
+              href={repo.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-start gap-3 rounded-md border border-ink/10 bg-white/50 px-4 py-4 transition hover:border-accent/40 hover:bg-white/80"
+            >
+              <BsGithub
+                size={20}
+                className="mt-0.5 shrink-0 text-ink/50 transition group-hover:text-accent"
+              />
+              <span>
+                <span className="block font-display text-base font-semibold text-ink group-hover:text-accent">
+                  {repo.name}
+                </span>
+                <span className="mt-1 block text-sm text-muted">
+                  {repo.description}
+                </span>
+              </span>
+            </motion.a>
+          ))}
+        </div>
+      </motion.section>
     </div>
   );
 };

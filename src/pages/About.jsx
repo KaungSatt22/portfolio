@@ -1,136 +1,125 @@
 import React from "react";
-import { FaPython, FaReact } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
-import { SiTailwindcss, SiRedux, SiMongodb } from "react-icons/si";
 import { motion } from "framer-motion";
-import { container, aboutText, item } from "../components/ultis/animate";
+import { profile, experience, education, skills } from "../data/content";
+import { fadeUp, stagger } from "../components/ultis/animate";
+
 const About = () => {
   return (
-    <div className="container mx-auto p-3">
+    <div className="page-shell">
       <motion.div
-        variants={container}
+        variants={stagger}
         initial="hidden"
         animate="show"
-        className="text-center mt-5 md:mt-20 "
+        className="max-w-3xl"
       >
-        <motion.h2 variants={aboutText} className="mb-2 text-4xl font-bold">
-          About Me
+        <motion.p variants={fadeUp} className="section-label">
+          About
+        </motion.p>
+        <motion.h1 variants={fadeUp} className="section-title mt-2">
+          Profile & experience
+        </motion.h1>
+        <motion.p
+          variants={fadeUp}
+          className="mt-5 text-base leading-relaxed text-muted md:text-lg"
+        >
+          {profile.summary}
+        </motion.p>
+      </motion.div>
+
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="mt-14 md:mt-20"
+      >
+        <motion.p variants={fadeUp} className="section-label">
+          Work
+        </motion.p>
+        <motion.h2
+          variants={fadeUp}
+          className="section-title mt-2 text-2xl md:text-3xl"
+        >
+          {experience.company}
         </motion.h2>
-        <motion.p
-          variants={aboutText}
-          className=" text-xl my-3 md:text-2xl max-w-5xl mx-auto md:my-5"
+        <div className="mt-8 space-y-0 border-l border-accent/30 pl-6">
+          {experience.roles.map((role) => (
+            <motion.div
+              key={role.title}
+              variants={fadeUp}
+              className="relative pb-8 last:pb-0"
+            >
+              <span className="absolute -left-[1.9rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent" />
+              <h3 className="font-display text-lg font-semibold text-ink">
+                {role.title}
+              </h3>
+              <p className="mt-1 text-sm text-muted">{role.period}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <div className="mt-14 grid gap-10 md:mt-20 md:grid-cols-2">
+        <motion.section
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
         >
-          Hi, I'm Kaung Satt, a passionate web developer with a strong
-          foundation in front-end technologies.I'm 23 years old.Third Years
-          Myanmar Major at Dagon University.
-        </motion.p>
-        <motion.p
-          variants={aboutText}
-          className="text-xl md:text-2xl my-3 max-w-5xl mx-auto md:my-5"
-        >
-          I specialize in building interactive and user-friendly web
-          applications using ReactJS. I have a deep understanding of HTML, CSS,
-          and JavaScript and have experience working with modern frameworks like
-          Redux.
-        </motion.p>
-        <motion.p
-          variants={aboutText}
-          className=" text-xl md:text-2xl  my-3 max-w-5xl mx-auto md:my-5"
-        >
-          I constantly strive to stay updated with the latest industry trends
-          and best practices to deliver high-quality and performant code.
-        </motion.p>
-        <motion.p
-          variants={aboutText}
-          className="text-xl md:text-2xl max-w-5xl mx-auto md:my-5"
-        >
-          I'm always open to new opportunities and collaborations.Feel free to
-          join with me.
-        </motion.p>
-      </motion.div>
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="flex flex-col items-center shadow-lg p-5 md:mt-20 overflow-hidden"
-      >
-        <div>
-          <motion.p
-            variants={item}
-            className="text-2xl mb-3 md:text-4xl md:mb-5"
-          >
-            Tech Stack:
+          <motion.p variants={fadeUp} className="section-label">
+            Education
           </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="mt-2 font-display text-xl font-bold text-ink"
+          >
+            {education.school}
+          </motion.h2>
+          <motion.p variants={fadeUp} className="mt-1 text-muted">
+            {education.degree}
+          </motion.p>
+          <motion.p variants={fadeUp} className="mt-1 text-sm text-muted">
+            {education.period}
+          </motion.p>
+        </motion.section>
+      </div>
+
+      <motion.section
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        className="mt-14 md:mt-20"
+      >
+        <motion.p variants={fadeUp} className="section-label">
+          Skills
+        </motion.p>
+        <motion.h2
+          variants={fadeUp}
+          className="section-title mt-2 text-2xl md:text-3xl"
+        >
+          Tech stack
+        </motion.h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          {Object.entries(skills).map(([group, items]) => (
+            <motion.div key={group} variants={fadeUp}>
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-ink">
+                {group}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {items.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-md border border-ink/10 bg-white/50 px-3 py-1.5 text-sm text-ink/80"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
-        <div className="flex items-center justify-start space-x-3 lg:space-x-28">
-          <motion.div variants={item} className="flex flex-col items-center ">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <FaPython size={40} />
-            </motion.div>
-            <p className="hidden md:block">Python</p>
-          </motion.div>
-          <motion.div variants={item} className="flex flex-col items-center">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <IoLogoJavascript size={40} />
-            </motion.div>
-            <p className="hidden md:block">JavaScript</p>
-          </motion.div>
-          <motion.div variants={item} className="flex flex-col items-center">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <FaReact size={40} />
-            </motion.div>
-            <p className="hidden md:block">React</p>
-          </motion.div>
-          <motion.div variants={item} className="flex flex-col items-center">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <SiTailwindcss size={40} />
-            </motion.div>
-            <p className="hidden md:block">Tailwind</p>
-          </motion.div>
-          <motion.div variants={item} className="flex flex-col items-center">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <SiRedux size={40} />
-            </motion.div>
-            <p className="hidden md:block">Redux</p>
-          </motion.div>
-          <motion.div variants={item} className="flex flex-col items-center">
-            <motion.div
-              whileHover={{
-                rotate: [0, 0, 270, 270, 0],
-                scale: [1, 2, 2, 1, 1],
-              }}
-            >
-              <SiMongodb size={40} />
-            </motion.div>
-            <p className="hidden md:block">Mongodb</p>
-          </motion.div>
-        </div>
-      </motion.div>
+      </motion.section>
     </div>
   );
 };

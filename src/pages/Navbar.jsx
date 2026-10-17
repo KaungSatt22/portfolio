@@ -1,105 +1,80 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
+import { profile } from "../data/content";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/projects", label: "Projects" },
+  { to: "/contact", label: "Contact" },
+];
+
+const linkClass = ({ isActive }) =>
+  [
+    "relative text-sm font-semibold tracking-wide transition-colors",
+    isActive ? "text-accent" : "text-ink/70 hover:text-ink",
+    isActive
+      ? "after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-accent"
+      : "",
+  ].join(" ");
+
 const Navbar = () => {
-  const [isopen, setIsopen] = useState(false);
-  const handleClick = () => {
-    setIsopen(!isopen);
-  };
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="sticky top-0 overflow-hidden bg-slate-50 z-10">
-      <nav className="flex justify-between items-center py-5 px-10 h-[10vh] shadow-lg ">
-        <h2 className="text-3xl font-bold">Heaven22</h2>
-        <div onClick={handleClick} className="cursor-pointer md:hidden">
-          {isopen ? <IoMdClose size={40} /> : <GiHamburgerMenu size={40} />}
-        </div>
-        <div className="space-x-10 text-xl hidden md:block">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "bg-blue-500 rounded-md text-white" : ""
-            }
-            style={{ padding: "10px" }}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive ? "bg-blue-500 rounded-md text-white" : ""
-            }
-            style={{ padding: "10px" }}
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              isActive ? "bg-blue-500 rounded-md text-white" : ""
-            }
-            style={{ padding: "10px" }}
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "bg-blue-500 rounded-md text-white" : ""
-            }
-            style={{ padding: "10px" }}
-          >
-            Contact
-          </NavLink>
+    <header className="sticky top-0 z-50 border-b border-ink/5 bg-[rgba(244,246,245,0.82)] backdrop-blur-md">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
+        <NavLink
+          to="/"
+          className="font-display text-lg font-bold tracking-tight text-ink md:text-xl"
+          onClick={() => setIsOpen(false)}
+        >
+          {profile.name}
+        </NavLink>
+
+        <button
+          type="button"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          className="cursor-pointer text-ink md:hidden"
+          onClick={() => setIsOpen((v) => !v)}
+        >
+          {isOpen ? <IoMdClose size={28} /> : <HiOutlineMenuAlt4 size={28} />}
+        </button>
+
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === "/"}>
+              {link.label}
+            </NavLink>
+          ))}
         </div>
       </nav>
-      <div className={`${isopen ? "block" : "hidden"}`}>
-        <div className="fixed inset-x-0 overflow-hidden z-10 bg-slate-50 md:hidden">
-          <div className="flex flex-col items-center space-y-10 p-5  text-center ">
-            <NavLink
-              onClick={handleClick}
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "bg-blue-400 text-white" : ""
-              }
-              style={{ padding: "10px", width: "100%" }}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              onClick={handleClick}
-              to="/about"
-              className={({ isActive }) =>
-                isActive ? "bg-blue-400 text-white" : ""
-              }
-              style={{ padding: "10px", width: "100%" }}
-            >
-              About
-            </NavLink>
-            <NavLink
-              onClick={handleClick}
-              to="/projects"
-              className={({ isActive }) =>
-                isActive ? "bg-blue-400  text-white" : ""
-              }
-              style={{ padding: "10px", width: "100%" }}
-            >
-              Projects
-            </NavLink>
-            <NavLink
-              onClick={handleClick}
-              to="/contact"
-              className={({ isActive }) =>
-                isActive ? "bg-blue-400 text-white" : ""
-              }
-              style={{ padding: "10px", width: "100%" }}
-            >
-              Contact
-            </NavLink>
+
+      {isOpen && (
+        <div className="border-t border-ink/5 bg-bg/95 md:hidden">
+          <div className="flex flex-col gap-1 px-5 py-4">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === "/"}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  [
+                    "rounded-md px-3 py-3 text-base font-semibold",
+                    isActive ? "bg-accent-soft text-accent" : "text-ink/80",
+                  ].join(" ")
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </header>
   );
 };
 

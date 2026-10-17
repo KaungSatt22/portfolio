@@ -8,15 +8,17 @@ import Contact from "./pages/Contact";
 
 const App = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </div>
   );
